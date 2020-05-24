@@ -29,7 +29,16 @@ public class Bank {
 
     //void to make transfer
     public void Transfer(Account to, Account from, int Sum){
-
+        if (to.getID() != from.getID()){
+            synchronized (to){
+                synchronized (from){
+                    if (from.makeWithdrawal(Sum)) to.makeDeposit(Sum);
+                }
+            }
+        }
+        else{
+            System.out.println("It's the same account!");
+        }
     }
 
     //void to count total bank balance
