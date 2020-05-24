@@ -20,6 +20,7 @@ public class Account {
     //these are getters for class fields
     public String getName(){return Name;}
     public int getBalance(){return Balance;}
+    public UUID getID() {return ID;}
 
     //void for making deposit (add money)
     public boolean makeDeposit(int sum){
@@ -37,5 +38,11 @@ public class Account {
             System.out.println("Not enough money in " + ID + " account!");
             return false;
         }
+    }
+
+    //override toString() to easy print account info
+    @Override
+    public String toString() {
+        return "Account name: " + Name + "; account balance: " + Balance + ";";
     }
 }
