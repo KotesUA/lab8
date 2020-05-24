@@ -1,7 +1,8 @@
 package com.company;
 
-import java.util.Collection;
-import java.util.List;
+import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.concurrent.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +21,28 @@ class BankTest {
             Account account = new Account("ACC" + i);
             account.makeDeposit((int)Math.random()*100000);
             bank.addAccount(account);
-
         }
+    }
+
+    @Test
+    public ArrayList<Future> makeTransactions(){
+        ArrayList<Future> futures = new ArrayList<>();
+        for (int i = 0; i < transactions; i++){
+            futures.add(executorService.submit(() -> bank.Transfer(
+                    bank.getAccounts().get((int)Math.random()*accounts),
+                    bank.getAccounts().get((int)Math.random()*accounts),
+                    (int)Math.random()*10000)));
+        }
+        return futures;
+    }
+
+    @Test
+    void testBank() throws ExecutionException, InterruptedException {
+        long startBalance = bank.getBankBalance();
+        for (Future future: makeTransactions()){
+            future.get();
+        }
+        long endBalance = bank.getBankBalance();
+        System.out.println(startBalance + " " + endBalance);
     }
 }
