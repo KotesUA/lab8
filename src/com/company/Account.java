@@ -35,7 +35,7 @@ public class Account {
             return true;
         }
         else{
-            System.out.println("Not enough money in " + ID + " account!");
+            System.out.println("Not enough money in " + Name + " account!");
             return false;
         }
     }
