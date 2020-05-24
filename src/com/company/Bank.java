@@ -15,5 +15,15 @@ public class Bank {
         this.ID = UUID.randomUUID();
     }
 
-    
+    public String getName(){return Name;}
+    public ArrayList<Account> getAccounts(){return Accounts;}
+    public UUID getID(){return ID;}
+
+    public void addAccount(Account account){
+        Accounts.add(account);
+    }
+
+    public void Transfer(Account to, Account from, int Sum){
+
+    }
 }
