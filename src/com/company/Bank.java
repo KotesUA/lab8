@@ -35,9 +35,10 @@ public class Bank {
                     if (from.makeWithdrawal(Sum)) to.makeDeposit(Sum);
                 }
             }
+            System.out.println("Transaction from " + from.getName() + " to " + to.getName() + " completed, sum: " + Sum);
         }
         else{
-            System.out.println("It's the same account!");
+            System.out.println("It's the same account (" + from.getName() + ")!");
         }
     }
 
